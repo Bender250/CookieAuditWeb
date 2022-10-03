@@ -9,94 +9,80 @@
   <body>
     <h1>CookieAudit</h1>
 
-    <p>The General Data Protection Regulation (GDPR) is the most comprehensive data protection legislation that has been passed by any governing body to this point. However, throughout its’ 88 pages, it only mentions cookies directly once, in Recital 30.</p>
+    <p>On this page you will find our recommendations for designing a valid consent notice. In each section, we first give you our interpretation in simple language for web developers, not lawyers. We then refer you to the legal sources relevant to each statement.</p>
 
+    <p><strong>Disclaimer:</strong> Please note that we are neither lawyers nor legal advisors. The information provided on this website and by CookieAudit does not constitute, and is not intended to constitute, legal advice. Instead, all information, content and materials are for general informational purposes only.</p>
+
+    <p>The views expressed on this page and the CookieAudit extension are those of the individual authors writing in their personal capacity - not those of their employer, ETH Zurich as a whole. All liability for actions taken or refrained from based on the contents of this page or the CookieAudit extension is hereby expressly disclaimed. The content of this posting is provided "as is"; no representation is made that the content is error-free.</p>
+
+    <h3>Motivation</h3>
+    <p>Cookie consent is governed by two major laws in the European Union. The ePrivacy Directive (ePD) requires consent for all data processing, except for <i>strictly necessary</i> processing (opt-in requirement). The General Data Protection Regulation (GDPR) then defines what constitutes valid consent and sets fines that can be as high as 4% of annual turnover or €20 million, whichever is greater. The average fine for insufficient consent is <a href="https://docs.google.com/spreadsheets/d/1JgphHFtMpYbKL69Rwcp38HVPYps5CVlbfYtRi_45zlE/edit?usp=sharing">3.2 million euros, with a median of 10 thousand euros</a>.</p>
+
+    <img src="fine_histogram.png" alt="fines">
+
+    <p>Note that both of these laws rarely mention cookies, they talk more about general data collection and processing than about the technologies used. As developers, we know that cookies are not the only technology used to collect private data from users. Therefore, consider framing consent as "data collection and processing consent" or at least mention in the opening sentence "We use cookies and similar technologies..." as Google and Facebook do. </p>
+
+    <h4>Legal reference</h4>
+    <p>The example about cookies from the GDPR, Recital 30:</p>
     <blockquote>
       Natural persons may be associated with online identifiers provided by their devices, applications, tools and protocols, such as internet protocol addresses, cookie identifiers or other identifiers such as radio frequency identification tags. This may leave traces which, in particular when combined with unique identifiers and other information received by the servers, may be used to create profiles of the natural persons and identify them.
     </blockquote>
+    <p>These lines state that all identifying data, including cookies, qualify as personal data and are therefore subject to the GDPR. Companies have the right to process their users' data as long as they obtain consent or have a legitimate interest.</p>
 
-    <p>What these two lines are stating is that cookies, insofar as they are used to identify users, qualify as personal data and are therefore subject to the GDPR. Companies do have a right to process their users’ data as long as they receive consent or if they have a legitimate interest.</p>
 
     <h3 id="consent">User consent</h3>
-    <p>
-      You must receive users' consent before you use any cookies except strictly necessary cookies. <a href="https://gdpr.eu/article-6-how-to-process-personal-data-legally/">Art. 6 GDPR</a> states the following:
-    </p>
-    <blockquote>
-      <ol>
-        <li>Processing shall be lawful only if and to the extent that at least one of the following applies:</li>
-        <ol type="a">
-          <li>
-            the data subject has given consent to the processing of his or her personal data for one or more specific purposes;
-          </li>
-          <li>
-            processing is necessary for the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering into a contract;
-          </li>
-          <li>
-            processing is necessary for compliance with a legal obligation to which the controller is subject;
-          </li>
-          <li>
-            [...]
-          </li>
-          <!-- <li> -->
-          <!--   processing is necessary in order to protect the vital interests of the data subject or of another natural person; -->
-          <!-- </li> -->
-          <!-- <li> -->
-          <!--   processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller; -->
-          <!-- </li> -->
-          <!-- <li> -->
-          <!--   processing is necessary for the purposes of the legitimate interests pursued by the controller or by a third party, except where such interests are overridden by the interests or fundamental rights and freedoms of the data subject which require protection of personal data, in particular where the data subject is a child. -->
-          <!-- </li> -->
-        </ol>
-        <!-- Point (f) of the first subparagraph shall not apply to processing carried out by public authorities in the performance of their tasks. -->
-      </ol>
-    </blockquote>
+    <p>The GDPR allows the processing of personal data only if you have a legal basis for it. In 99% of cases, the required legal basis is consent. The GDPR requires that consent must be actively and freely given, unambiguous, specific, and informed. This makes each of these common deceptive design patterns illegal:</p>
+    <ul>
+      <li>Notice gives no choice ("We use cookies -> Got it / Close"), which violates all the requirements.</li>
+      <li>Pre-checking checkboxes, which is not an opt-in (ePD) and freely-given (GDPR).</li>
+      <li>Cookie wall - blocking access to the website unless all cookies are accepted, which is not a free consent (GDPR).</li>
+      <li>"We use cookies for your best experience...", which is not specific and informed (GDPR).</li>
+    </ul>
+    <h4>Legal reference</h4>
+    <p>The legal bases for the collection and processing of personal data are defined in <a href="https://gdpr.eu/article-6-how-to-process-personal-data-legally/">Art. 6 GDPR</a>. We are almost certain that the legal basis you need is a) consent.</p>
+    <p>The consent requirements are then defined in <a href="https://gdpr-info.eu/art-7-gdpr/">Art. 7</a> and <a href="https://gdpr-info.eu/recitals/no-32/">Art. 32 GDPR</a>.</p>
 
-    <h3 id="declaration">Cookie Declaration</h3>
-    <p>
-      You must declare and provide information about each cookie before consent is received. 
-    </p>
+    <h3 id="categories">Categories of data processing purposes</h3>
+    <p>Data collection and processing is only allowed for "specific, explicit and legitimate purposes". While you are welcome to define each processing individually in plain language, it is common to group processing purposes into categories, and CookieAudit assumes such grouping. Although these categories are defined by non-legal entities, they are universally accepted. CookieAudit can classify cookies into the following four categories based on the <a href="https://www.cookielaw.org/wp-content/uploads/2019/12/icc_uk_cookiesguide_revnov.pdf">ICC UK Cookie Guide</a>.</p>
+    <ul>
+      <li><i>Strictly necessary cookies</i> - These cookies are essential to allow you to browse the website and use its features, such as accessing secure areas of the website. Cookies that allow webshops to store your items in your shopping cart while you shop online are an example of strictly necessary cookies. These cookies are usually first-party session cookies. While it is not required to obtain consent for these cookies, it should be explained to the user what they do and why they are necessary.</li>
+      <li><i>Functionality cookies</i> - Also known as "preference cookies," these cookies allow a website to remember choices you have made in the past, such as what language you prefer, what region you want weather reports for, or what your username and password are so you can log in automatically.</li>
+      <li><i>Analytical cookies</i> - These cookies, also known as "statistics cookies" or "performance cookies," collect information about how you use a website, such as which pages you visited and which links you clicked on. None of this information can be used to identify you. It is all aggregated and therefore anonymized. Their sole purpose is to improve the website's functions. This also applies to cookies from third-party analytics services, as long as the cookies are exclusively for the owner of the website visited.</li>
+      <li>Advertising cookies - Also known as "marketing cookies," these cookies track your online activity to help advertisers deliver more relevant ads or limit how often you see an ad. These cookies may share this information with other organizations or advertisers. These are persistent cookies and almost always of third-party provenance.</li>
+    </ul>
+    <p>During a scan, CookieAudit tries to classify each cookie without considering how it was declared. This is done with machine learning algorithms and was first implemented by <a href="https://github.com/dibollinger/CookieBlock">CookieBlock</a> and reused in CookieAudit. Due to the nature of this approach, CookieAudit is not always correct when classifying cookies.</p>
+
+    <h4>Legal reference</h4>
+    <blockquote>
+      Personal data shall be: [...] collected for specified, explicit and legitimate purposes and not further processed in a manner that is incompatible with those purposes [...] adequate, relevant and limited to what is necessary in relation to the purposes for which they are processed (‘data minimisation’); accurate and, where necessary, kept up to date [...]
+    </blockquote>
+    <p>Taken from <a href="https://gdpr-info.eu/art-5-gdpr/">Art. 5 GDPR</a>.</p>
+
+    <h3 id="declaration">Declaration of collected data (cookies)</h3>
+    <p>You must declare and provide information about all the purposes of the data processing (except for the strictly necessary ones). If you decide or your CMP requires to list all cookies (OneTrust, CookieBot, Termly, etc.), you must describe the cookies, provide their individual purposes and expiration date. If you decide to list only third parties (we are unable to judge whether this is compliant), you should list the same information for each third party.</p>
+
+    <h4>Legal reference</h4>
     <blockquote>
       The controller shall take appropriate measures to provide any information referred to in Articles 13 and 14 [...] relating to processing to the data subject in a concise, transparent, intelligible and easily accessible form, using clear and plain language [...].
     </blockquote>
-    <p>
-      You can read more about what information needs to be provided in <a href="https://gdpr.eu/article-13-personal-data-collected/">Art. 13 GDPR</a> and <a href="https://gdpr.eu/article-14-personal-data-not-obtained-from-data-subject/">Art. 14 GDPR</a>.
-    </p>
-
-    <h3 id="categories">Cookie Categories</h3>
-    <p>
-      <a href="https://gdpr.eu/article-7-how-to-get-consent-to-collect-personal-data/">Art. 7 GDPR</a> states that consent must be specific and informed in order to be considered valid. In effect, this means that a consent notice must declare and describe the purpose for which personal data is collected, and why cookies are stored on the user’s browser. We denote as undeclared cookies those which can be observed being set inside the browser, but which at the same time are not listed in a website’s consent notice.
-    </p>
-    <p>
-      Below are the main ways of classifying cookies.
-    </p>
-    <blockquote>
-      <ul>
-        <li><i>Strictly necessary cookies</i> — These cookies are essential for you to browse the website and use its features, such as accessing secure areas of the site. Cookies that allow web shops to hold your items in your cart while you are shopping online are an example of strictly necessary cookies. These cookies will generally be first-party session cookies. While it is not required to obtain consent for these cookies, what they do and why they are necessary should be explained to the user.</li>
-        <li><i>Functionality cookies</i> — Also known as "preferences cookies," these cookies allow a website to remember choices you have made in the past, like what language you prefer, what region you would like weather reports for, or what your user name and password are so you can automatically log in.</li>
-        <li><i>Analytical cookies</i> — Also known as "statistics cookies or performance cookies," these cookies collect information about how you use a website, like which pages you visited and which links you clicked on. None of this information can be used to identify you. It is all aggregated and, therefore, anonymized. Their sole purpose is to improve website functions. This includes cookies from third-party analytics services as long as the cookies are for the exclusive use of the owner of the website visited.</li>
-        <li><i>Advertising cookies</i> — Also known as "marketing cookies," these cookies track your online activity to help advertisers deliver more relevant advertising or to limit how many times you see an ad. These cookies can share that information with other organizations or advertisers. These are persistent cookies and almost always of third-party provenance.</li>
-      </ul>
-    </blockquote>
-    <p>
-      During a scan, CookieAudit tries to classify each cookie without regard to how it has been declared. This is done with machine learning algorithms and was first implemented by <a href="https://github.com/dibollinger/CookieBlock">CookieBlock</a> and reused in CookieAudit. Due to the nature of this approach, CookieAudit is not always correct in classifying cookies.
-    </p>
+    <p>You can read more about what information needs to be provided in <a href="https://gdpr.eu/article-13-personal-data-collected/">Art. 13 GDPR</a> and <a href="https://gdpr.eu/article-14-personal-data-not-obtained-from-data-subject/">Art. 14 GDPR</a>. The <a href="https://gdprhub.eu/CJEU_-_C-673/17_-_Planet49" >Planet 49 case</a> confirmed that these requirements also hold for cookies.</p>
 
     <h3 id="expiry">Expiration Date</h3>
-    <p>
-      <a href="">Art. 13 GDPR</a> defines the necessary information that needs to be declared in relation to cookies. This includes the storage period of the cookie. A failure to accurately declare the expiration time for cookie therefore violates the GDPR. CookieAudit reports each cookie for which the actual expiry is more than 1.5 times the declared period.
-    </p>
-    <p>
-      Some cookies, such as "OptanonConsent" and "CookieConsent", are excluded from this analysis. They come from CMPs and store the visitors' cookie preferences. On many instances we found that these cookies have a higher expiration date but are corrected as soon as the user interacts with the consent notice.
-    </p>
+    <p><a href="https://gdpr.eu/article-13-personal-data-collected/">Art. 13 GDPR</a> defines the necessary information that needs to be declared in relation to cookies. This includes the storage period of the cookie. A failure to accurately declare the expiration time for cookie therefore violates the GDPR. CookieAudit reports each cookie for which the actual expiry is more than 1.5 times the declared period.</p>
+    <p>Some cookies, such as "OptanonConsent" and "CookieConsent", are excluded from this analysis. They come from CMPs and store the visitors' cookie preferences. In many instances we found that these cookies have a higher expiration date but are corrected as soon as the user interacts with the consent notice.</p>
 
     <h3 id="noreject">Missing reject button</h3>
-    <p>
-      Per GDPR it should be as easy for users to withdraw their consent as it is for them to give their consent. This means a "Reject non-essentials" button should be present on the initial popup and not nested inside a settings page.
-    </p>
+    <p>Per GDPR it should be as easy for users to withdraw their consent as it is for them to give their consent. This means a "Reject non-essentials" button should be present on the initial popup and not nested inside a settings page.</p>
+
+    <h4>Legal reference</h4>
+    <p>The French <a href="https://www.cnil.fr/en/cookies-cnil-fines-google-total-150-million-euros-and-facebook-60-million-euros-non-compliance">CNIL fined Google and Facebook 150 and 60 million euros</a>, respectively. This was for making it easier to accept all cookies than to reject them. After this fine, both companies implemented new consent notices with buttons to reject all cookies.</p>
+
 
     <h3 id="preselected">Preselected choices</h3>
-    <p>
-      A preselected category means that the checkbox in the CMP popup is selected by default for this category. This means the user has to take additional steps to disallow cookies in this category. The only category that can be pre-selected is "essential cookies". To comply with the GDPR make sure that it is as easy to give consent as it is to disallow the site from setting non-essential cookies.
-    </p>
+    <p>A preselected category means that the checkbox in the CMP popup is selected by default for this category. This means that the user must take additional steps to disallow cookies in that category. The only category that can be pre-selected is "essential cookies". In order to comply with the GDPR, you should make sure that it is as easy to give consent as it is to disallow the setting of non-essential cookies on the website.</p>
+
+    <h4>Legal reference</h4>
+    <p>The ePrivacy Directive requires that any data processing requires consent (i.e., opt-in), except for strictly necessary processing. This is confirmed by the French <a href="https://www.cnil.fr/en/cookies-cnil-fines-google-total-150-million-euros-and-facebook-60-million-euros-non-compliance">CNIL's fine against Google and Facebook of 150 and 60 million euros</a>, respectively.</p>
+
   </body>
 </html>
